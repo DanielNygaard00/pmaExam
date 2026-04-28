@@ -19,9 +19,9 @@ export default function HomeScreen({ profileName }) {
   const [bakes, setBakes] = useState([
     {
       id: '1',
-      user: 'USER NAME',
-      level: 'Advanced baker',
-      sourdoughName: 'Lava Dough',
+      user: 'Best_baker123',
+      level: 'Advanced',
+      sourdoughName: 'Bread Pitt',
       flour: '200g whole wheat, 300g all purpose',
       image: require('../assets/bread.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
@@ -29,10 +29,10 @@ export default function HomeScreen({ profileName }) {
     },
     {
       id: '2',
-      user: 'USER NAME',
-      level: 'Beginner baker',
-      sourdoughName: 'Basic Bagel',
-      flour: '500g bread flour, 10g salt',
+      user: 'Tippi_pippi',
+      level: 'Beginner',
+      sourdoughName: 'Lana Dough Ray',
+      flour: '80g durum wheat, 160g tipo 00',
       image: require('../assets/bagel1.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
       description: 'Perfectly chewy bagels. Great for breakfast!'
@@ -79,7 +79,7 @@ export default function HomeScreen({ profileName }) {
       const newBake = {
         id: Date.now().toString(),
         user: profileName || 'USER NAME',
-        level: 'Beginner baker',
+        level: 'Beginner',
         sourdoughName: newBakeName,
         flour: 'Default Flour Mix',
         image: require('../assets/bread.jpg'),
@@ -285,7 +285,7 @@ export default function HomeScreen({ profileName }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#C5B9AC',
+    backgroundColor: '#F1ECE0',
   },
   scrollContent: {
     padding: 20,

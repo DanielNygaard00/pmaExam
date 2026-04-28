@@ -138,7 +138,7 @@ export default function ProfileScreen({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#C5B9AC',
+    backgroundColor: '#F1ECE0',
   },
   scrollContent: {
     padding: 24,

@@ -29,7 +29,8 @@ export default function OnboardingOne() {
         Welcome to Wake & Bake
       </Text>
       <Text style={styles.description}>
-        Your ultimate companion for the perfect sourdough journey.
+        Your professional sourdough app. 
+        Designed to help you master every step of the baking process.
       </Text>
 
       <Pressable
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    backgroundColor: '#C5B9AC',
+    backgroundColor: '#F1ECE0',
   },
   skipButton: {
     position: 'absolute',
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
   skipText: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#8C4A1E',
+    color: '#B77654',
   },
   image: {
     width: 300,
@@ -71,15 +72,15 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: '800',
+    fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 12,
-    color: '#2C2C2C',
+    color: '#483732',
   },
   description: {
-    fontSize: 18,
+    fontSize: 16,
     textAlign: 'center',
-    color: '#5A5A5A',
+    color: '#483732',
     marginBottom: 24,
   },
   button: {

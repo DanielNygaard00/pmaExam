@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    backgroundColor: '#C5B9AC',
+    backgroundColor: '#F1ECE0',
   },
   skipButton: {
     position: 'absolute',
