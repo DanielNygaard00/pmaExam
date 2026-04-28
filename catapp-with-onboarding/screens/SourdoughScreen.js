@@ -98,7 +98,7 @@ export default function SourdoughScreen({ profileName }) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
-           <Text style={styles.title} accessibilityRole="header">Good day, {name}</Text>
+           <Text style={styles.title} accessibilityRole="header">Welcome, {name}</Text>
            <View style={styles.levelBadge}>
               <Text style={styles.levelText}>Beginner baker</Text>
            </View>
