@@ -12,7 +12,7 @@ export default function HistoryScreen({ logEntries }) {
         style={styles.title}
         accessibilityRole="header"
       >
-        Activity History
+        Baking History
       </Text>
         <View style={styles.listWrapper}>
           {logEntries.map((item, index) => (

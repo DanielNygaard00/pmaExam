@@ -17,19 +17,19 @@ export default function OnboardingTwo() {
       </TouchableOpacity>
 
       <Image 
-        source={require('./../../assets/entry.png')} 
+        source={{ uri: 'https://images.pexels.com/photos/1756061/pexels-photo-1756061.jpeg' }} 
         style={styles.image} 
-        accessibilityLabel="App activity log example"
+        accessibilityLabel="Sourdough starter feeding"
       />
 
       <Text 
         style={styles.title}
         accessibilityRole="header"
       >
-        Begin by logging your activity 📝 
+        Begin with ...
       </Text>
       <Text style={styles.description}>
-        Use the Log tab to record new entries and save them to your history.
+        Do this blaa blaa
       </Text>
 
       <Pressable
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    backgroundColor: '#F7F3EB',
+    backgroundColor: '#C5B9AC',
   },
   skipButton: {
     position: 'absolute',

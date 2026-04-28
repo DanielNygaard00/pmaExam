@@ -17,29 +17,29 @@ export default function OnboardingOne() {
       </TouchableOpacity>
 
       <Image 
-        source={{ uri: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg' }} 
+        source={require('../../assets/logo.png')} 
         style={styles.image} 
-        accessibilityLabel="Welcome image"
+        accessibilityLabel="Wake & Bake Logo"
       />
 
       <Text 
         style={styles.title}
         accessibilityRole="header"
       >
-        Welcome to Your Tracker!
+        Welcome to Wake & Bake
       </Text>
       <Text style={styles.description}>
-        This shell app provides all the tools you need to track your daily activities and profiles.
+        Your professional sourdough app. Blah blah blah
       </Text>
 
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate('OnboardingTwo')}
         accessibilityRole="button"
-        accessibilityLabel="Next screen"
+        accessibilityLabel="Get started button"
         accessibilityHint="Double tap to go to the next onboarding page"
       >
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>Get started</Text>
       </Pressable>
     </View>
   );
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    backgroundColor: '#F7F3EB',
+    backgroundColor: '#C5B9AC',
   },
   skipButton: {
     position: 'absolute',
@@ -64,10 +64,10 @@ const styles = StyleSheet.create({
     color: '#8C4A1E',
   },
   image: {
-    width: 180,
-    height: 180,
-    borderRadius: 16,
+    width: 300,
+    height: 300,
     marginBottom: 20,
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 28,

@@ -8,7 +8,9 @@ import { Text } from "react-native"
 // Screens
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import LogScreen from './screens/LogScreen';
+import SourdoughScreen from './screens/SourdoughScreen';
+import RecipesScreen from './screens/RecipesScreen';
+import TodoScreen from './screens/TodoScreen';
 import HistoryScreen from './screens/HistoryScreen';
 import LogEntryDetailScreen from './screens/LogEntryDetailScreen';
 
@@ -20,7 +22,17 @@ import OnboardingThree from './screens/onboarding/OnboardingThree';
 // Tab navigator
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
+const RecipesStack = createNativeStackNavigator();
 const OnboardingStack = createNativeStackNavigator();
+
+function RecipesStackScreen() {
+  return (
+    <RecipesStack.Navigator screenOptions={{ headerShown: false }}>
+      <RecipesStack.Screen name="RecipesMain" component={RecipesScreen} />
+      <RecipesStack.Screen name="Todo" component={TodoScreen} />
+    </RecipesStack.Navigator>
+  );
+}
 
 function HomeStackScreen({ profileName, logEntries }) {
   return (
@@ -35,7 +47,7 @@ function HomeStackScreen({ profileName, logEntries }) {
       <HomeStack.Screen
         name="History"
         options={{
-          title: 'Activity History',
+          title: 'Baking History',
           headerShown: true,
           presentation: "modal",
           animation: "slide_from_bottom",
@@ -48,24 +60,33 @@ function HomeStackScreen({ profileName, logEntries }) {
       <HomeStack.Screen
         name="LogEntryDetail"
         component={LogEntryDetailScreen}
-        options={{ title: 'Entry Detail', headerShown: true }}
+        options={{ title: 'Log Details', headerShown: true }}
       />
     </HomeStack.Navigator>
   );
 }
 
-function MainTabs({ profileName, setProfileName, logEntries, addLogEntry }) {
+function MainTabs({ profileName, setProfileName, username, setUsername, experienceLevel, setExperienceLevel, friends, setFriends, logEntries, addLogEntry }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: '#B3541E',
-        tabBarInactiveTintColor: '#5A5A5A',
+        tabBarActiveTintColor: '#3C2F2F', // Darker brown from design
+        tabBarInactiveTintColor: '#8B7E74', // Lighter tan/grey from design
         tabBarStyle: {
-              backgroundColor: '#F7F3EB',
-            },
-        tabBarLabelStyle: { fontSize: 12 },
+          backgroundColor: '#C5B9AC',
+          borderTopWidth: 1,
+          borderTopColor: '#8B7E74',
+          height: 85,
+          paddingTop: 10,
+        },
+        tabBarLabelStyle: { 
+          fontSize: 16,
+          fontWeight: '700',
+          marginTop: 10,
+        },
+        tabBarIconStyle: { display: 'none' }, // Completely hide icon space
       }}
     >
 
@@ -75,7 +96,6 @@ function MainTabs({ profileName, setProfileName, logEntries, addLogEntry }) {
         options={{
           title: 'Home',
           tabBarAccessibilityLabel: 'Home tab',
-          tabBarIcon: () => <Text style={{ fontSize: 22 }}>🏠</Text>,
         }}
       >
         {() => (
@@ -87,22 +107,31 @@ function MainTabs({ profileName, setProfileName, logEntries, addLogEntry }) {
 
       </Tab.Screen>
 
-      {/* LOG TAB */}
+      {/* SOURDOUGH TAB */}
       <Tab.Screen
-        name="Log"
+        name="Sourdough"
         options={{
-          title: 'Activity Log',
-          tabBarAccessibilityLabel: 'Activity log tab',
-          tabBarIcon: () => <Text style={{ fontSize: 22 }}>➕</Text>
+          title: 'Sourdough',
+          tabBarAccessibilityLabel: 'Sourdough tracking tab',
         }}
       >
         {() => (
-          <LogScreen
+          <SourdoughScreen
             addLogEntry={addLogEntry}
             profileName={profileName}
           />
         )}
       </Tab.Screen>
+
+      {/* RECIPES TAB */}
+      <Tab.Screen
+        name="Recipes"
+        component={RecipesStackScreen}
+        options={{
+          title: 'Recipes',
+          tabBarAccessibilityLabel: 'Sourdough recipes tab',
+        }}
+      />
 
       {/* PROFILE TAB */}
       <Tab.Screen
@@ -110,13 +139,18 @@ function MainTabs({ profileName, setProfileName, logEntries, addLogEntry }) {
         options={{
           title: 'Profile',
           tabBarAccessibilityLabel: 'Profile tab',
-          tabBarIcon: () => <Text style={{ fontSize: 22 }}>👤</Text>
         }}
       >
         {() => (
           <ProfileScreen
             profileName={profileName}
             setProfileName={setProfileName}
+            username={username}
+            setUsername={setUsername}
+            experienceLevel={experienceLevel}
+            setExperienceLevel={setExperienceLevel}
+            friends={friends}
+            setFriends={setFriends}
           />
         )}
       </Tab.Screen>
@@ -127,10 +161,18 @@ function MainTabs({ profileName, setProfileName, logEntries, addLogEntry }) {
 
 export default function App() {
   const [profileName, setProfileName] = useState("");
+  const [username, setUsername] = useState("");
+  const [experienceLevel, setExperienceLevel] = useState(null);
+  const [friends, setFriends] = useState([
+    { id: '1', username: 'AliceBaker', status: 'not_added' },
+    { id: '2', username: 'SourdoughSam', status: 'not_added' },
+    { id: '3', username: 'CrustyChris', status: 'not_added' },
+    { id: '4', username: 'DoughJoe', status: 'not_added' },
+  ]);
   const [logEntries, setLogEntries] = useState([{
-      personName: "User",
-      amount: 0,
-      notes: "Initial entry",
+      personName: "Feeding",
+      amount: 100,
+      notes: "Starter is looking very active today!",
     }]);
 
   const addLogEntry = (entry) => {
@@ -152,6 +194,12 @@ export default function App() {
           <MainTabs
             profileName={profileName}
             setProfileName={setProfileName}
+            username={username}
+            setUsername={setUsername}
+            experienceLevel={experienceLevel}
+            setExperienceLevel={setExperienceLevel}
+            friends={friends}
+            setFriends={setFriends}
             logEntries={logEntries}
             addLogEntry={addLogEntry}
           />

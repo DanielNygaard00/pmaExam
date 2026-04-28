@@ -17,19 +17,19 @@ export default function OnboardingThree() {
       </TouchableOpacity>
 
       <Image 
-        source={require('./../../assets/home.png')} 
+        source={{ uri: 'https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg' }} 
         style={styles.image} 
-        accessibilityLabel="App home screen example"
+        accessibilityLabel="Beautiful sourdough bread"
       />
 
       <Text 
         style={styles.title}
         accessibilityRole="header"
       >
-        Track your progress over time
+        Begin with ...
       </Text>
       <Text style={styles.description}>
-        The Home Screen shows you a snapshot of your status, you can always go deeper into history by clicking on "View Activity History"
+        Do this blaa blaa
       </Text>
 
       <Pressable
@@ -39,7 +39,7 @@ export default function OnboardingThree() {
         accessibilityLabel="Start using the app"
         accessibilityHint="Double tap to finish onboarding and start using the app"
       >
-        <Text style={styles.buttonText}>Start Using the App</Text>
+        <Text style={styles.buttonText}>Start using the app</Text>
       </Pressable>
     </View>
   );
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 24,
-    backgroundColor: '#F7F3EB',
+    backgroundColor: '#C5B9AC',
   },
   skipButton: {
     position: 'absolute',

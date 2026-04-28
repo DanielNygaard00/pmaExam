@@ -17,14 +17,14 @@ export default function LogEntryDetailScreen({ route }) {
         accessible
         accessibilityLabel={`Details for log entry ${index + 1}`}
       >
-        <Text style={styles.label}>Logged by</Text>
+        <Text style={styles.label}>Activity Type</Text>
         <Text style={styles.value}>{entry.personName || 'Unknown'}</Text>
 
-        <Text style={styles.label}>Value / Amount</Text>
+        <Text style={styles.label}>Weight (grams)</Text>
         <Text style={styles.value}>{entry.amount || '0'}</Text>
 
-        <Text style={styles.label}>Notes</Text>
-        <Text style={styles.value}>{entry.notes || 'No remarks'}</Text>
+        <Text style={styles.label}>Observations</Text>
+        <Text style={styles.value}>{entry.notes || 'No observations'}</Text>
       </View>
     </View>
   );

@@ -1,52 +1,136 @@
-import { View, Text, TextInput, StyleSheet, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  StyleSheet, 
+  ScrollView, 
+  TouchableOpacity,
+  Image,
+  Alert
+} from 'react-native';
 
-export default function ProfileScreen({ profileName, setProfileName }) {
-  const navigation = useNavigation();
+export default function ProfileScreen({ 
+  profileName, 
+  setProfileName, 
+  username, 
+  setUsername, 
+  experienceLevel, 
+  setExperienceLevel,
+  friends,
+  setFriends
+}) {
+  const [tempName, setTempName] = useState(profileName);
+  const [tempUsername, setTempUsername] = useState(username);
+  const [tempLevel, setTempLevel] = useState(experienceLevel);
+
+  const handleAddFriend = (friendId) => {
+    setFriends(prevFriends => 
+      prevFriends.map(f => f.id === friendId ? { ...f, status: 'added' } : f)
+    );
+  };
+
+  const handleSave = () => {
+    setProfileName(tempName);
+    setUsername(tempUsername);
+    setExperienceLevel(tempLevel);
+    Alert.alert("Success", "Profile updated successfully!");
+  };
 
   return (
-    <View
-      style={styles.container}
-      accessible
-      accessibilityRole="form"
-      accessibilityLabel="My Profile form"
-      accessibilityHint="Edit your profile information or restart the onboarding flow"
-    >
-      <Text
-        style={styles.title}
-        accessibilityRole="header"
-        accessibilityLabel="My Profile"
-      >
-        My Profile
-      </Text>
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <Text style={styles.title} accessibilityRole="header">Profile</Text>
 
-      <Text
-        style={styles.label}
-        accessibilityLabel="Profile name label"
-      >
-        Profile/Item Name:
-      </Text>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Name:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="What is your name?"
+            value={tempName}
+            onChangeText={setTempName}
+            accessibilityLabel="Name input"
+          />
+        </View>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Enter profile name"
-        value={profileName}
-        onChangeText={setProfileName}
-        accessibilityRole="text"
-        accessibilityLabel="Profile name input"
-        accessibilityHint="Double tap to edit. Type your profile name."
-        returnKeyType="done"
-      />
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Username:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="What name do you want others to see?"
+            value={tempUsername}
+            onChangeText={setTempUsername}
+            accessibilityLabel="Username input"
+          />
+        </View>
 
-      <Pressable
-        style={styles.restartButton}
-        onPress={() => navigation.navigate('OnboardingOne')}
-        accessibilityRole="button"
-        accessibilityLabel="Restart Intro Flow"
-        accessibilityHint="Double tap to go back to the first onboarding screen"
-      >
-        <Text style={styles.restartButtonText}>Restart Intro Flow</Text>
-      </Pressable>
+        <View style={styles.inputGroup}>
+          <Text style={styles.label}>Years of experience:</Text>
+          <View style={styles.experienceButtons}>
+            <TouchableOpacity 
+              style={[styles.expButton, { backgroundColor: '#D1C4B5' }, tempLevel === 'Beginner' && styles.selectedLevel]}
+              onPress={() => setTempLevel('Beginner')}
+              accessibilityRole="button"
+              accessibilityLabel="Beginner level, less than 1 year"
+              accessibilityState={{ selected: tempLevel === 'Beginner' }}
+            >
+               <Text style={styles.expButtonTitle}>Beginner</Text>
+               <Text style={styles.expButtonSub}>{"<"}1 year</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={[styles.expButton, { backgroundColor: '#E59A8D' }, tempLevel === 'Intermediate' && styles.selectedLevel]}
+              onPress={() => setTempLevel('Intermediate')}
+              accessibilityRole="button"
+              accessibilityLabel="Intermediate level, 2 to 4 years"
+              accessibilityState={{ selected: tempLevel === 'Intermediate' }}
+            >
+               <Text style={styles.expButtonTitle}>Intermediate</Text>
+               <Text style={styles.expButtonSub}>2-4 year</Text>
+            </TouchableOpacity>
+            <TouchableOpacity 
+              style={[styles.expButton, { backgroundColor: '#D5C48B' }, tempLevel === 'Advanced' && styles.selectedLevel]}
+              onPress={() => setTempLevel('Advanced')}
+              accessibilityRole="button"
+              accessibilityLabel="Advanced level, more than 4 years"
+              accessibilityState={{ selected: tempLevel === 'Advanced' }}
+            >
+               <Text style={styles.expButtonTitle}>Advanced</Text>
+               <Text style={styles.expButtonSub}>4+ year</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <TouchableOpacity 
+          style={styles.saveProfileButton} 
+          onPress={handleSave}
+          accessibilityRole="button"
+          accessibilityLabel="Save profile"
+        >
+          <Text style={styles.saveProfileButtonText}>Save Profile</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.sectionTitle} accessibilityRole="header">Add friends:</Text>
+        <View style={styles.friendsList}>
+          {friends.map((friend) => (
+            <View key={friend.id} style={styles.friendCard}>
+              <View style={styles.friendInfo}>
+                <View style={styles.avatarPlaceholder} />
+                <Text style={styles.friendName}>{friend.username}</Text>
+              </View>
+              <TouchableOpacity 
+                onPress={() => friend.status === 'not_added' && handleAddFriend(friend.id)}
+                disabled={friend.status === 'added'}
+                accessibilityRole="button"
+                accessibilityLabel={friend.status === 'added' ? `${friend.username} already added` : `Add ${friend.username} as friend`}
+              >
+                <Text style={[styles.addText, friend.status === 'added' && styles.addedText]}>
+                  {friend.status === 'added' ? 'Added' : 'Add'}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -54,43 +138,114 @@ export default function ProfileScreen({ profileName, setProfileName }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F7F3EB', 
-    justifyContent: 'center',
+    backgroundColor: '#C5B9AC',
+  },
+  scrollContent: {
     padding: 24,
+    paddingTop: 60,
   },
   title: {
-    fontSize: 32,
-    marginBottom: 30,
-    textAlign: 'center',
+    fontSize: 40,
     fontWeight: '800',
     color: '#2C2C2C',
+    marginBottom: 32,
+  },
+  inputGroup: {
+    marginBottom: 20,
   },
   label: {
-    fontSize: 20,
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#2C2C2C',
     marginBottom: 8,
-    color: '#5A5A5A',
   },
   input: {
-    borderWidth: 2,
-    borderColor: '#8C4A1E', 
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#E5E0DA',
     borderRadius: 12,
-    padding: 14,
-    fontSize: 18,
-    color: '#2C2C2C', 
-    elevation: 2,
-    marginBottom: 24,
+    padding: 16,
+    fontSize: 14,
+    color: '#2C2C2C',
   },
-  restartButton: {
-    backgroundColor: '#B3541E',
+  experienceButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  expButton: {
+    flex: 1,
+    paddingVertical: 12,
     borderRadius: 12,
-    paddingVertical: 14,
     alignItems: 'center',
-    marginTop: 20,
+    justifyContent: 'center',
   },
-  restartButtonText: {
+  expButtonTitle: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#4A4A4A',
+    marginBottom: 2,
+  },
+  expButtonSub: {
+    fontSize: 10,
+    color: '#4A4A4A',
+    fontStyle: 'italic',
+  },
+  selectedLevel: {
+    borderWidth: 2,
+    borderColor: '#3C2F2F',
+  },
+  saveProfileButton: {
+    backgroundColor: '#3C2F2F',
+    borderRadius: 12,
+    paddingVertical: 16,
+    alignItems: 'center',
+    marginBottom: 32,
+  },
+  saveProfileButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
+  },
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: '800',
+    color: '#2C2C2C',
+    marginBottom: 16,
+  },
+  friendsList: {
+    gap: 12,
+  },
+  friendCard: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: '#E5E0DA',
+    borderRadius: 12,
+    padding: 12,
+    paddingHorizontal: 16,
+  },
+  friendInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatarPlaceholder: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: '#C5B9AC',
+    marginRight: 12,
+  },
+  friendName: {
+    fontSize: 14,
+    fontWeight: '800',
+    color: '#2C2C2C',
+  },
+  addText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#4A4A4A',
+  },
+  addedText: {
+    color: '#8B7E74',
+    fontStyle: 'italic',
   },
 });

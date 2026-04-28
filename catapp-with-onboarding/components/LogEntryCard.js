@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function LogEntryCard({ item }) {
   return (
     <View style={styles.card}>
-      <Text style={styles.mainText}>Logged by: {item.personName}</Text>
-      <Text style={styles.subText}>Value: {item.amount}</Text>
-      <Text style={styles.subText}>Notes: {item.notes || 'No remarks'}</Text>
+      <Text style={styles.mainText}>Activity: {item.personName}</Text>
+      <Text style={styles.subText}>Weight: {item.amount}g</Text>
+      <Text style={styles.subText}>Notes: {item.notes || 'No observations'}</Text>
     </View>
   );
 }

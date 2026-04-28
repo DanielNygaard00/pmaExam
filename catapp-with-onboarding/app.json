@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Generic Tracker Shell",
-    "slug": "generic-tracker-shell",
+    "name": "Sourdough Tracker",
+    "slug": "sourdough-tracker",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
