@@ -75,7 +75,7 @@ function MainTabs({ profileName, setProfileName, username, setUsername, experien
         tabBarActiveTintColor: '#3C2F2F', // Darker brown from design
         tabBarInactiveTintColor: '#8B7E74', // Lighter tan/grey from design
         tabBarStyle: {
-          backgroundColor: '#C5B9AC',
+          backgroundColor: '#F1ECE0',
           borderTopWidth: 1,
           borderTopColor: '#8B7E74',
           height: 85,
