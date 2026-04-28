@@ -26,10 +26,10 @@ export default function OnboardingTwo() {
         style={styles.title}
         accessibilityRole="header"
       >
-        Begin with ...
+        Track Your Sourdough
       </Text>
       <Text style={styles.description}>
-        Do this blaa blaa
+        Keep track of your starter's age, feeding schedule, and flour types to ensure it's always healthy.
       </Text>
 
       <Pressable

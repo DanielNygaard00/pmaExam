@@ -29,7 +29,7 @@ export default function OnboardingOne() {
         Welcome to Wake & Bake
       </Text>
       <Text style={styles.description}>
-        Your professional sourdough app. Blah blah blah
+        Your ultimate companion for the perfect sourdough journey.
       </Text>
 
       <Pressable

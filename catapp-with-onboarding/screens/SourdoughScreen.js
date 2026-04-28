@@ -99,7 +99,7 @@ export default function SourdoughScreen({ profileName }) {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
            <Text style={styles.title} accessibilityRole="header">Welcome, {name}</Text>
-           <View style={styles.levelBadge}>
+           <View style={styles.levelBadge} accessibilityLabel="Baker level: Beginner baker">
               <Text style={styles.levelText}>Beginner baker</Text>
            </View>
         </View>
@@ -112,10 +112,10 @@ export default function SourdoughScreen({ profileName }) {
                 style={styles.starterImage} 
                 accessibilityLabel={`Sourdough starter jar: ${item.name}`}
               />
-              <View style={styles.nameTag}>
+              <View style={styles.nameTag} accessibilityLabel={`Sourdough name: ${item.name}`}>
                 <Text style={styles.nameTagText}>{item.name}</Text>
               </View>
-              <View style={styles.locationTag}>
+              <View style={styles.locationTag} accessibilityLabel={`Stored at: ${item.location}`}>
                 <Text style={styles.locationTagText}>{item.location}</Text>
               </View>
             </View>
@@ -130,7 +130,7 @@ export default function SourdoughScreen({ profileName }) {
                   style={styles.entryEditButton} 
                   onPress={() => handleEditPress(item)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Edit ${item.name}`}
+                  accessibilityLabel={`Edit age for ${item.name}`}
                 >
                   <Text style={styles.entryEditButtonText}>Edit</Text>
                 </TouchableOpacity>
@@ -145,7 +145,7 @@ export default function SourdoughScreen({ profileName }) {
                   style={styles.entryEditButton} 
                   onPress={() => handleEditPress(item)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Edit ${item.name}`}
+                  accessibilityLabel={`Edit feeding date for ${item.name}`}
                 >
                   <Text style={styles.entryEditButtonText}>Edit</Text>
                 </TouchableOpacity>
@@ -160,7 +160,7 @@ export default function SourdoughScreen({ profileName }) {
                   style={styles.entryEditButton} 
                   onPress={() => handleEditPress(item)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Edit ${item.name}`}
+                  accessibilityLabel={`Edit flour type for ${item.name}`}
                 >
                   <Text style={styles.entryEditButtonText}>Edit</Text>
                 </TouchableOpacity>
@@ -250,6 +250,8 @@ export default function SourdoughScreen({ profileName }) {
                 <TouchableOpacity 
                   style={[styles.saveButton, { backgroundColor: '#8B7E74' }]}
                   onPress={() => setModalVisible(false)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Cancel editing"
                 >
                   <Text style={styles.saveButtonText}>Edit</Text>
                 </TouchableOpacity>

@@ -26,10 +26,10 @@ export default function OnboardingThree() {
         style={styles.title}
         accessibilityRole="header"
       >
-        Begin with ...
+        Master Your Recipes
       </Text>
       <Text style={styles.description}>
-        Do this blaa blaa
+        Follow expert recipes and log your baking progress to become a master baker.
       </Text>
 
       <Pressable
