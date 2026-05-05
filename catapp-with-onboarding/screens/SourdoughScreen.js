@@ -123,44 +123,28 @@ export default function SourdoughScreen({ profileName }) {
             <View style={styles.infoSection}>
               <View style={styles.infoRow}>
                 <View>
-                  <Text style={styles.infoLabel}>Age:</Text>
+                  <Text style={styles.infoLabel}>Alder:</Text>
                   <Text style={styles.infoValue}>{item.age}</Text>
                 </View>
-                <TouchableOpacity 
-                  style={styles.entryEditButton} 
-                  onPress={() => handleEditPress(item)}
-                  accessibilityRole="button"
-                  accessibilityLabel={`Edit age for ${item.name}`}
-                >
-                  <Text style={styles.entryEditButtonText}>Edit</Text>
-                </TouchableOpacity>
               </View>
 
               <View style={styles.infoRow}>
                 <View>
-                  <Text style={styles.infoLabel}>Feeded:</Text>
+                  <Text style={styles.infoLabel}>Sidst fodret:</Text>
                   <Text style={styles.infoValue}>{item.lastFed}</Text>
                 </View>
-                <TouchableOpacity 
-                  style={styles.entryEditButton} 
-                  onPress={() => handleEditPress(item)}
-                  accessibilityRole="button"
-                  accessibilityLabel={`Edit feeding date for ${item.name}`}
-                >
-                  <Text style={styles.entryEditButtonText}>Edit</Text>
-                </TouchableOpacity>
               </View>
 
-              <View style={styles.infoRow}>
+              <View style={[styles.infoRow, { marginBottom: 0 }]}>
                 <View>
-                  <Text style={styles.infoLabel}>Flour:</Text>
+                  <Text style={styles.infoLabel}>Mel:</Text>
                   <Text style={styles.infoValue}>{item.flour}</Text>
                 </View>
                 <TouchableOpacity 
                   style={styles.entryEditButton} 
                   onPress={() => handleEditPress(item)}
                   accessibilityRole="button"
-                  accessibilityLabel={`Edit flour type for ${item.name}`}
+                  accessibilityLabel={`Edit ${item.name}`}
                 >
                   <Text style={styles.entryEditButtonText}>Edit</Text>
                 </TouchableOpacity>

@@ -170,9 +170,9 @@ export default function App() {
     { id: '4', username: 'DoughJoe', status: 'not_added' },
   ]);
   const [logEntries, setLogEntries] = useState([{
-      personName: "Feeding",
+      personName: "Fodring",
       amount: 100,
-      notes: "Starter is looking very active today!",
+      notes: "Surdejen ser meget aktiv ud i dag!",
     }]);
 
   const addLogEntry = (entry) => {

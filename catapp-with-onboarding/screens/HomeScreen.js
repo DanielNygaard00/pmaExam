@@ -25,17 +25,17 @@ export default function HomeScreen({ profileName }) {
       flour: '200g whole wheat, 300g all purpose',
       image: require('../assets/bread.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
-      description: 'A beautiful crust with an open crumb. Fermented for 24 hours.'
+      description: 'En smuk skorpe med en åben krumme. Fermenteret i 24 timer.'
     },
     {
       id: '2',
       user: 'Tippi_pippi',
-      level: 'Beginner',
+      level: 'Begynder',
       sourdoughName: 'Lana Dough Ray',
-      flour: '80g durum wheat, 160g tipo 00',
+      flour: '80g durum hvede, 160g tipo 00',
       image: require('../assets/bagel1.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
-      description: 'Perfectly chewy bagels. Great for breakfast!'
+      description: 'Perfekte seje bagels. Gode til morgenmad!'
     }
   ]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -119,7 +119,7 @@ export default function HomeScreen({ profileName }) {
            />
            <Text style={styles.userName}>{bake.user}</Text>
         </View>
-        <View style={[styles.levelTag, { backgroundColor: bake.level === 'Advanced baker' ? '#D5C48B' : '#C5B5A5' }]}>
+        <View style={[styles.levelTag, { backgroundColor: bake.level === 'Advanced' ? '#D5C48B' : '#C5B5A5' }]}>
           <Text style={styles.levelText}>{bake.level}</Text>
         </View>
       </View>
@@ -204,6 +204,8 @@ export default function HomeScreen({ profileName }) {
                   <TouchableOpacity 
                     style={styles.saveButton}
                     onPress={() => setSummaryVisible(false)}
+                    accessibilityRole="button"
+                    accessibilityLabel="Close modal"
                   >
                     <Text style={styles.saveButtonText}>Close</Text>
                   </TouchableOpacity>
