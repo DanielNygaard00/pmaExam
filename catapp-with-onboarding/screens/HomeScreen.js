@@ -45,14 +45,6 @@ export default function HomeScreen({ profileName }) {
   const [newBakeName, setNewBakeName] = useState('');
   const [newBakeNotes, setNewBakeNotes] = useState('');
 
-  const handleEditPress = (bake) => {
-    setEditingBakeId(bake.id);
-    setNewBakeName(bake.sourdoughName);
-    setNewBakeNotes(bake.description);
-    setSummaryVisible(false);
-    setModalVisible(true);
-  };
-
   const handleAddNewBakePress = () => {
     setEditingBakeId(null);
     setNewBakeName('');
@@ -140,7 +132,7 @@ export default function HomeScreen({ profileName }) {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title} accessibilityRole="header">See the latest bakes!</Text>
+        <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>Welcome, {profileName || '[name]'}</Text>
         
         {bakes.map(renderBakeCard)}
       </ScrollView>
@@ -192,15 +184,6 @@ export default function HomeScreen({ profileName }) {
                 <Text style={styles.flourInfo}>{selectedBake.description}</Text>
 
                 <View style={styles.modalButtons}>
-                  <TouchableOpacity 
-                    style={[styles.saveButton, { backgroundColor: '#8B7E74' }]}
-                    onPress={() => handleEditPress(selectedBake)}
-                    accessibilityRole="button"
-                    accessibilityLabel="Edit this bake"
-                  >
-                    <Text style={styles.saveButtonText}>Edit</Text>
-                  </TouchableOpacity>
-                  
                   <TouchableOpacity 
                     style={styles.saveButton}
                     onPress={() => setSummaryVisible(false)}
@@ -294,7 +277,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: '800',
     color: '#2C2C2C',
     marginBottom: 24,

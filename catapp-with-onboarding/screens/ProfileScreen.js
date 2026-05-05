@@ -24,9 +24,13 @@ export default function ProfileScreen({
   const [tempUsername, setTempUsername] = useState(username);
   const [tempLevel, setTempLevel] = useState(experienceLevel);
 
-  const handleAddFriend = (friendId) => {
+  const handleToggleFriend = (friendId) => {
     setFriends(prevFriends => 
-      prevFriends.map(f => f.id === friendId ? { ...f, status: 'added' } : f)
+      prevFriends.map(f => 
+        f.id === friendId 
+          ? { ...f, status: f.status === 'added' ? 'not_added' : 'added' } 
+          : f
+      )
     );
   };
 
@@ -40,7 +44,7 @@ export default function ProfileScreen({
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title} accessibilityRole="header">Profile</Text>
+        <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>Profile</Text>
 
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Name:</Text>
@@ -118,10 +122,9 @@ export default function ProfileScreen({
                 <Text style={styles.friendName}>{friend.username}</Text>
               </View>
               <TouchableOpacity 
-                onPress={() => friend.status === 'not_added' && handleAddFriend(friend.id)}
-                disabled={friend.status === 'added'}
+                onPress={() => handleToggleFriend(friend.id)}
                 accessibilityRole="button"
-                accessibilityLabel={friend.status === 'added' ? `${friend.username} already added` : `Add ${friend.username} as friend`}
+                accessibilityLabel={friend.status === 'added' ? `Remove ${friend.username} as friend` : `Add ${friend.username} as friend`}
               >
                 <Text style={[styles.addText, friend.status === 'added' && styles.addedText]}>
                   {friend.status === 'added' ? 'Added' : 'Add'}
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   title: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: '800',
     color: '#2C2C2C',
     marginBottom: 32,

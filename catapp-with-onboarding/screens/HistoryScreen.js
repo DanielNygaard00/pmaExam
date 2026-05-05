@@ -11,6 +11,7 @@ export default function HistoryScreen({ logEntries }) {
       <Text 
         style={styles.title}
         accessibilityRole="header"
+        numberOfLines={1}
       >
         Baking History
       </Text>
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: '800',
     color: '#2C2C2C',
     marginBottom: 16,

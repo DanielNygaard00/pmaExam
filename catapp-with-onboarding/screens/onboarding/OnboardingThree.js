@@ -17,29 +17,29 @@ export default function OnboardingThree() {
       </TouchableOpacity>
 
       <Image 
-        source={{ uri: 'https://images.pexels.com/photos/1070850/pexels-photo-1070850.jpeg' }} 
+        source={require('../../assets/onboarding2.png')} 
         style={styles.image} 
-        accessibilityLabel="Beautiful sourdough bread"
+        accessibilityLabel="Sourdough tracking illustration"
       />
 
       <Text 
         style={styles.title}
         accessibilityRole="header"
       >
-        Master Your Recipes
+        Track Your Sourdough
       </Text>
       <Text style={styles.description}>
-        Follow expert recipes and log your baking progress to become a master baker.
+        Keep track of your starter's age, feeding schedule, and flour types to ensure it's always healthy.
       </Text>
 
       <Pressable
         style={styles.button}
-        onPress={() => navigation.replace('MainTabs')}
+        onPress={() => navigation.navigate('OnboardingFour')}
         accessibilityRole="button"
-        accessibilityLabel="Start using the app"
-        accessibilityHint="Double tap to finish onboarding and start using the app"
+        accessibilityLabel="Next screen"
+        accessibilityHint="Double tap to go to the next onboarding page"
       >
-        <Text style={styles.buttonText}>Start using the app</Text>
+        <Text style={styles.buttonText}>Next</Text>
       </Pressable>
     </View>
   );
@@ -63,13 +63,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#8C4A1E',
   },
-  image: {
-    width: 180,
-    height: 250,
-    borderRadius: 16,
+ image: {
+    width: 300,
+    height: 300,
     marginBottom: 20,
-    borderWidth: 3,
-    borderColor: '#8C4A1E',
+    resizeMode: 'contain',
   },
   title: {
     fontSize: 28,

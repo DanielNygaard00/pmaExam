@@ -8,6 +8,7 @@ export default function LogEntryDetailScreen({ route }) {
       <Text 
         style={styles.title}
         accessibilityRole="header"
+        numberOfLines={1}
       >
         Entry #{index + 1}
       </Text>
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontSize: 30,
+    fontSize: 32,
     fontWeight: '800',
     textAlign: 'center',
     color: '#2C2C2C',

@@ -11,7 +11,7 @@ import { useNavigation } from '@react-navigation/native';
 const RECIPES = [
   { 
     id: '1', 
-    name: 'Sourdough Pizza', 
+    name: 'Pizza Recipe', 
     level: 'Advanced baker',
     image: require('../assets/pizza.png')
   },
@@ -35,13 +35,13 @@ export default function RecipesScreen() {
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <Text style={styles.title} accessibilityRole="header">Recipes</Text>
+        <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>Recipes</Text>
         
         {RECIPES.map((recipe) => (
           <TouchableOpacity 
             key={recipe.id} 
             style={styles.card}
-            onPress={() => navigation.navigate('Todo', { recipeName: recipe.name })}
+            onPress={() => navigation.navigate('Todo', { recipeName: recipe.name, isRecipe: true })}
             accessibilityRole="button"
             accessibilityLabel={`${recipe.name} recipe, ${recipe.level}`}
             accessibilityHint="Double tap to see the to-do list for this recipe"
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   title: {
-    fontSize: 40,
+    fontSize: 32,
     fontWeight: '800',
     color: '#2C2C2C',
     marginBottom: 32,

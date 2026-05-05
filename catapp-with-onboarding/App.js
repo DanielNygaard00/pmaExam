@@ -18,6 +18,7 @@ import LogEntryDetailScreen from './screens/LogEntryDetailScreen';
 import OnboardingOne from './screens/onboarding/OnboardingOne';
 import OnboardingTwo from './screens/onboarding/OnboardingTwo';
 import OnboardingThree from './screens/onboarding/OnboardingThree';
+import OnboardingFour from './screens/onboarding/OnboardingFour';
 
 // Tab navigator
 const Tab = createBottomTabNavigator();
@@ -188,6 +189,7 @@ export default function App() {
       <OnboardingStack.Screen name="OnboardingOne" component={OnboardingOne} />
       <OnboardingStack.Screen name="OnboardingTwo" component={OnboardingTwo} />
       <OnboardingStack.Screen name="OnboardingThree" component={OnboardingThree} />
+      <OnboardingStack.Screen name="OnboardingFour" component={OnboardingFour} />
 
       <OnboardingStack.Screen name="MainTabs">
         {() => (

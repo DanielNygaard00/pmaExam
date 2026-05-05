@@ -38,8 +38,6 @@ export default function SourdoughScreen({ profileName }) {
   const [newLocation, setNewLocation] = useState('');
   const [newFlour, setNewFlour] = useState('');
 
-  const name = profileName || '[name]';
-
   const handleEditPress = (item) => {
     setEditingId(item.id);
     setNewName(item.name);
@@ -98,7 +96,7 @@ export default function SourdoughScreen({ profileName }) {
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
-           <Text style={styles.title} accessibilityRole="header">Welcome, {name}</Text>
+           <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>My sourdoughs</Text>
            <View style={styles.levelBadge} accessibilityLabel="Baker level: Beginner baker">
               <Text style={styles.levelText}>Beginner baker</Text>
            </View>
@@ -232,15 +230,6 @@ export default function SourdoughScreen({ profileName }) {
 
               <View style={styles.modalButtons}>
                 <TouchableOpacity 
-                  style={[styles.saveButton, { backgroundColor: '#8B7E74' }]}
-                  onPress={() => setModalVisible(false)}
-                  accessibilityRole="button"
-                  accessibilityLabel="Cancel editing"
-                >
-                  <Text style={styles.saveButtonText}>Edit</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity 
                   style={styles.saveButton}
                   onPress={handleSaveSourdough}
                   accessibilityRole="button"
@@ -355,15 +344,15 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   entryEditButton: {
-    backgroundColor: '#8B7E74',
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
+    backgroundColor: '#3C2F2F',
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 18,
     alignSelf: 'center',
   },
   entryEditButtonText: {
     color: '#FFFFFF',
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '700',
   },
   addButton: {

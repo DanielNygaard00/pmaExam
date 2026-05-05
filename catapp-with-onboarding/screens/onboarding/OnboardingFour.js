@@ -1,7 +1,7 @@
 import { Image, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function OnboardingTwo() {
+export default function OnboardingFour() {
   const navigation = useNavigation();
 
   return (
@@ -17,29 +17,29 @@ export default function OnboardingTwo() {
       </TouchableOpacity>
 
       <Image 
-        source={require('../../assets/onboarding1.png')} 
+        source={require('../../assets/onboarding3.png')} 
         style={styles.image} 
-        accessibilityLabel="Onboarding illustration 1"
+        accessibilityLabel="Mastering recipes illustration"
       />
 
       <Text 
         style={styles.title}
         accessibilityRole="header"
       >
-        Your Professional Sourdough App
+        Master Your Recipes
       </Text>
       <Text style={styles.description}>
-        Designed to help you master every step of the baking process.
+        Follow expert recipes and log your baking progress to become a master baker.
       </Text>
 
       <Pressable
         style={styles.button}
-        onPress={() => navigation.navigate('OnboardingThree')}
+        onPress={() => navigation.replace('MainTabs')}
         accessibilityRole="button"
-        accessibilityLabel="Next screen"
-        accessibilityHint="Double tap to go to the next onboarding page"
+        accessibilityLabel="Start using the app"
+        accessibilityHint="Double tap to finish onboarding and start using the app"
       >
-        <Text style={styles.buttonText}>Next</Text>
+        <Text style={styles.buttonText}>Start using the app</Text>
       </Pressable>
     </View>
   );
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#8C4A1E',
   },
- image: {
+  image: {
     width: 300,
     height: 300,
     marginBottom: 20,
