@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function SourdoughScreen({ profileName }) {
+export default function SourdoughScreen({ profileName, experienceLevel }) {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [editingId, setEditingId] = useState(null);

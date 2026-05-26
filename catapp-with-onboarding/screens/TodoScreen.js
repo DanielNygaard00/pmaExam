@@ -50,7 +50,7 @@ export default function TodoScreen({ route }) {
     >
       <View style={styles.header}>
         <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>
-          {title || "To do list"}
+          {title || "Recipe"}
         </Text>
         <TouchableOpacity 
           style={styles.backButton}
