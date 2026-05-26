@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   skipText: {
     fontSize: 16,
     fontWeight: '700',
-    color: '#8C4A1E',
+    color: '#B77654',
   },
  image: {
     width: 300,
@@ -83,10 +83,14 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   button: {
-    backgroundColor: '#B3541E',
-    borderRadius: 12,
-    paddingVertical: 14,
-    paddingHorizontal: 24,
+    backgroundColor: '#3C2F2F',
+    borderRadius: 30,
+    paddingVertical: 16,
+    paddingHorizontal: 40,
+    position: 'absolute',
+    bottom: 30,
+    width: '90%',
+    alignItems: 'center',
   },
   buttonText: {
     color: '#FFFFFF',

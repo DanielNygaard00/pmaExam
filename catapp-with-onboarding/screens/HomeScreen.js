@@ -25,17 +25,17 @@ export default function HomeScreen({ profileName }) {
       flour: '200g whole wheat, 300g all purpose',
       image: require('../assets/bread.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
-      description: 'En smuk skorpe med en åben krumme. Fermenteret i 24 timer.'
+      description: 'A beautiful crust with an open crumb. Fermented for 24 hours.'
     },
     {
       id: '2',
       user: 'Tippi_pippi',
-      level: 'Begynder',
-      sourdoughName: 'Lana Dough Ray',
-      flour: '80g durum hvede, 160g tipo 00',
+      level: 'Beginner',
+      sourdoughName: 'Doughbi-Wan Kenobi',
+      flour: '80g durum wheat, 160g tipo 00',
       image: require('../assets/bagel1.jpg'),
       avatar: 'https://cdn-icons-png.flaticon.com/512/194/194938.png',
-      description: 'Perfekte seje bagels. Gode til morgenmad!'
+      description: 'Perfect chewy bagels. Great for breakfast!'
     }
   ]);
   const [modalVisible, setModalVisible] = useState(false);
@@ -201,7 +201,7 @@ export default function HomeScreen({ profileName }) {
 
       {/* Add Bake Modal */}
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
@@ -281,7 +281,6 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     color: '#2C2C2C',
     marginBottom: 24,
-    textAlign: 'center',
   },
   card: {
     backgroundColor: '#FFFFFF',
@@ -325,7 +324,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   levelText: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: '700',
     color: '#605030',
   },

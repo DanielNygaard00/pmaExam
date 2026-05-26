@@ -41,6 +41,15 @@ export default function ProfileScreen({
     Alert.alert("Success", "Profile updated successfully!");
   };
 
+  const getLevelColor = (level) => {
+    switch (level) {
+      case 'Beginner': return '#D1C4B5';
+      case 'Intermediate': return '#E59A8D';
+      case 'Advanced': return '#D5C48B';
+      default: return '#D1C4B5';
+    }
+  };
+
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -71,36 +80,44 @@ export default function ProfileScreen({
         <View style={styles.inputGroup}>
           <Text style={styles.label}>Years of experience:</Text>
           <View style={styles.experienceButtons}>
-            <TouchableOpacity 
-              style={[styles.expButton, { backgroundColor: '#D1C4B5' }, tempLevel === 'Beginner' && styles.selectedLevel]}
-              onPress={() => setTempLevel('Beginner')}
-              accessibilityRole="button"
-              accessibilityLabel="Beginner level, less than 1 year"
-              accessibilityState={{ selected: tempLevel === 'Beginner' }}
-            >
-               <Text style={styles.expButtonTitle}>Beginner</Text>
-               <Text style={styles.expButtonSub}>{"<"}1 year</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.expButton, { backgroundColor: '#E59A8D' }, tempLevel === 'Intermediate' && styles.selectedLevel]}
-              onPress={() => setTempLevel('Intermediate')}
-              accessibilityRole="button"
-              accessibilityLabel="Intermediate level, 2 to 4 years"
-              accessibilityState={{ selected: tempLevel === 'Intermediate' }}
-            >
-               <Text style={styles.expButtonTitle}>Intermediate</Text>
-               <Text style={styles.expButtonSub}>2-4 year</Text>
-            </TouchableOpacity>
-            <TouchableOpacity 
-              style={[styles.expButton, { backgroundColor: '#D5C48B' }, tempLevel === 'Advanced' && styles.selectedLevel]}
-              onPress={() => setTempLevel('Advanced')}
-              accessibilityRole="button"
-              accessibilityLabel="Advanced level, more than 4 years"
-              accessibilityState={{ selected: tempLevel === 'Advanced' }}
-            >
-               <Text style={styles.expButtonTitle}>Advanced</Text>
-               <Text style={styles.expButtonSub}>4+ year</Text>
-            </TouchableOpacity>
+            <View style={styles.expItem}>
+              <TouchableOpacity 
+                style={[styles.expButton, { backgroundColor: '#D1C4B5' }, tempLevel === 'Beginner' && styles.selectedLevel]}
+                onPress={() => setTempLevel('Beginner')}
+                accessibilityRole="button"
+                accessibilityLabel="Beginner level, less than 1 year"
+                accessibilityState={{ selected: tempLevel === 'Beginner' }}
+              >
+                 <Text style={styles.expButtonTitle}>Beginner</Text>
+              </TouchableOpacity>
+              <Text style={styles.expButtonSub}>{"<"}1 year</Text>
+            </View>
+
+            <View style={styles.expItem}>
+              <TouchableOpacity 
+                style={[styles.expButton, { backgroundColor: '#E59A8D' }, tempLevel === 'Intermediate' && styles.selectedLevel]}
+                onPress={() => setTempLevel('Intermediate')}
+                accessibilityRole="button"
+                accessibilityLabel="Intermediate level, 2 to 4 years"
+                accessibilityState={{ selected: tempLevel === 'Intermediate' }}
+              >
+                 <Text style={styles.expButtonTitle}>Intermediate</Text>
+              </TouchableOpacity>
+              <Text style={styles.expButtonSub}>2-4 year</Text>
+            </View>
+
+            <View style={styles.expItem}>
+              <TouchableOpacity 
+                style={[styles.expButton, { backgroundColor: '#D5C48B' }, tempLevel === 'Advanced' && styles.selectedLevel]}
+                onPress={() => setTempLevel('Advanced')}
+                accessibilityRole="button"
+                accessibilityLabel="Advanced level, more than 4 years"
+                accessibilityState={{ selected: tempLevel === 'Advanced' }}
+              >
+                 <Text style={styles.expButtonTitle}>Advanced</Text>
+              </TouchableOpacity>
+              <Text style={styles.expButtonSub}>4+ year</Text>
+            </View>
           </View>
         </View>
 
@@ -121,6 +138,11 @@ export default function ProfileScreen({
                 <View style={styles.avatarPlaceholder} />
                 <Text style={styles.friendName}>{friend.username}</Text>
               </View>
+              
+              <View style={[styles.levelPill, { backgroundColor: getLevelColor(friend.level) }]}>
+                <Text style={styles.levelPillText}>{friend.level}</Text>
+              </View>
+
               <TouchableOpacity 
                 onPress={() => handleToggleFriend(friend.id)}
                 accessibilityRole="button"
@@ -174,23 +196,28 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 8,
   },
-  expButton: {
+  expItem: {
     flex: 1,
+    alignItems: 'center',
+  },
+  expButton: {
+    width: '100%',
     paddingVertical: 12,
-    borderRadius: 12,
+    borderRadius: 25,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 4,
   },
   expButtonTitle: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: '800',
     color: '#4A4A4A',
-    marginBottom: 2,
   },
   expButtonSub: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#4A4A4A',
     fontStyle: 'italic',
+    textAlign: 'center',
   },
   selectedLevel: {
     borderWidth: 2,
@@ -198,7 +225,7 @@ const styles = StyleSheet.create({
   },
   saveProfileButton: {
     backgroundColor: '#3C2F2F',
-    borderRadius: 12,
+    borderRadius: 30,
     paddingVertical: 16,
     alignItems: 'center',
     marginBottom: 32,
@@ -241,6 +268,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '800',
     color: '#2C2C2C',
+  },
+  levelPill: {
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  levelPillText: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#4A4A4A',
   },
   addText: {
     fontSize: 14,

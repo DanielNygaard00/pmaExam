@@ -13,16 +13,18 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function TodoScreen({ route }) {
   const navigation = useNavigation();
-  const { isRecipe } = route.params || { isRecipe: false };
+  const { isRecipe, title, initialSteps } = route.params || { isRecipe: false, title: 'Recipe', initialSteps: null };
 
-  const [steps, setSteps] = useState([
+  const defaultSteps = [
     { text: "Blend until a coherent consistent. Let it rest for 30 min.", completed: false },
     { text: "Add the peaking sourdough, salt and start careful coilfold", completed: false },
     { text: "Do 3 x coil fold in 1 hour spacing", completed: false },
     { text: "Shape the dough and let it rest in the fridge over night", completed: false },
     { text: "Preheat the oven at 220 celcius 1 hour before baking", completed: false },
     { text: "Bake the dough for 30 min at 220 celcius, and 5 min at 200 celcius", completed: false }
-  ]);
+  ];
+
+  const [steps, setSteps] = useState(initialSteps || (isRecipe ? defaultSteps : []));
 
   const [newStepText, setNewStepText] = useState('');
   const [isAdding, setIsAdding] = useState(false);
@@ -48,7 +50,7 @@ export default function TodoScreen({ route }) {
     >
       <View style={styles.header}>
         <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>
-          To do list
+          {title || "To do list"}
         </Text>
         <TouchableOpacity 
           style={styles.backButton}

@@ -23,9 +23,9 @@ export default function SourdoughScreen({ profileName }) {
   const [sourdoughs, setSourdoughs] = useState([
     {
       id: '1',
-      name: 'LAVA DOUGH',
+      name: 'LANA DOUGH RAY',
       age: '6 months',
-      lastFed: '17. april 2026',
+      lastFed: '17. April 2026',
       flour: 'Durum wheat, Tipo 00',
       location: 'The kitchen table',
       image: 'https://images.pexels.com/photos/1756061/pexels-photo-1756061.jpeg'
@@ -119,25 +119,36 @@ export default function SourdoughScreen({ profileName }) {
             </View>
 
             <View style={styles.infoSection}>
-              <View style={styles.infoRow}>
+              <View style={styles.infoRow} accessible={true} accessibilityLabel={`Age: ${item.age}`}>
                 <View>
-                  <Text style={styles.infoLabel}>Alder:</Text>
+                  <Text style={styles.infoLabel}>Age:</Text>
                   <Text style={styles.infoValue}>{item.age}</Text>
                 </View>
               </View>
 
-              <View style={styles.infoRow}>
+              <View style={styles.infoRow} accessible={true} accessibilityLabel={`Last fed: ${item.lastFed}`}>
                 <View>
-                  <Text style={styles.infoLabel}>Sidst fodret:</Text>
+                  <Text style={styles.infoLabel}>Last fed:</Text>
                   <Text style={styles.infoValue}>{item.lastFed}</Text>
                 </View>
               </View>
 
-              <View style={[styles.infoRow, { marginBottom: 0 }]}>
-                <View>
-                  <Text style={styles.infoLabel}>Mel:</Text>
+              <View style={[styles.infoRow, { marginBottom: 8 }]}>
+                <View accessible={true} accessibilityLabel={`Flour: ${item.flour}`}>
+                  <Text style={styles.infoLabel}>Flour:</Text>
                   <Text style={styles.infoValue}>{item.flour}</Text>
                 </View>
+              </View>
+
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity 
+                  style={[styles.entryEditButton, styles.notesButton]} 
+                  onPress={() => navigation.navigate('Todo', { title: 'Notes', isRecipe: false })}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Notes for ${item.name}`}
+                >
+                  <Text style={[styles.entryEditButtonText, styles.notesButtonText]}>Notes</Text>
+                </TouchableOpacity>
                 <TouchableOpacity 
                   style={styles.entryEditButton} 
                   onPress={() => handleEditPress(item)}
@@ -163,7 +174,7 @@ export default function SourdoughScreen({ profileName }) {
 
       {/* Add Sourdough Modal */}
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => setModalVisible(false)}
@@ -318,7 +329,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   locationTagText: {
-    fontSize: 10,
+    fontSize: 12,
     color: '#FFFFFF',
     fontWeight: '600',
   },
@@ -343,17 +354,28 @@ const styles = StyleSheet.create({
     color: '#4A4A4A',
     fontWeight: '500',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
   entryEditButton: {
-    backgroundColor: '#3C2F2F',
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: '#3C2F2F',
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 18,
-    alignSelf: 'center',
+  },
+  notesButton: {
+    marginRight: 8,
   },
   entryEditButtonText: {
-    color: '#FFFFFF',
+    color: '#3C2F2F',
     fontSize: 14,
     fontWeight: '700',
+  },
+  notesButtonText: {
   },
   addButton: {
     position: 'absolute',

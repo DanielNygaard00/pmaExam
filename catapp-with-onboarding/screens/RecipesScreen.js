@@ -41,7 +41,7 @@ export default function RecipesScreen() {
           <TouchableOpacity 
             key={recipe.id} 
             style={styles.card}
-            onPress={() => navigation.navigate('Todo', { recipeName: recipe.name, isRecipe: true })}
+            onPress={() => navigation.navigate('Todo', { title: 'Recipe', isRecipe: true })}
             accessibilityRole="button"
             accessibilityLabel={`${recipe.name} recipe, ${recipe.level}`}
             accessibilityHint="Double tap to see the to-do list for this recipe"

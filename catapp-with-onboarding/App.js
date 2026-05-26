@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Text } from "react-native"
 
 // Screens
 import HomeScreen from './screens/HomeScreen';
@@ -11,8 +10,6 @@ import ProfileScreen from './screens/ProfileScreen';
 import SourdoughScreen from './screens/SourdoughScreen';
 import RecipesScreen from './screens/RecipesScreen';
 import TodoScreen from './screens/TodoScreen';
-import HistoryScreen from './screens/HistoryScreen';
-import LogEntryDetailScreen from './screens/LogEntryDetailScreen';
 
 // Importing the Onboarding Screens
 import OnboardingOne from './screens/onboarding/OnboardingOne';
@@ -24,6 +21,7 @@ import OnboardingFour from './screens/onboarding/OnboardingFour';
 const Tab = createBottomTabNavigator();
 const HomeStack = createNativeStackNavigator();
 const RecipesStack = createNativeStackNavigator();
+const SourdoughStack = createNativeStackNavigator();
 const OnboardingStack = createNativeStackNavigator();
 
 function RecipesStackScreen() {
@@ -35,7 +33,18 @@ function RecipesStackScreen() {
   );
 }
 
-function HomeStackScreen({ profileName, logEntries }) {
+function SourdoughStackScreen({ profileName }) {
+  return (
+    <SourdoughStack.Navigator screenOptions={{ headerShown: false }}>
+      <SourdoughStack.Screen name="SourdoughMain">
+        {() => <SourdoughScreen profileName={profileName} />}
+      </SourdoughStack.Screen>
+      <SourdoughStack.Screen name="Todo" component={TodoScreen} />
+    </SourdoughStack.Navigator>
+  );
+}
+
+function HomeStackScreen({ profileName }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
@@ -44,30 +53,11 @@ function HomeStackScreen({ profileName, logEntries }) {
       >
         {() => <HomeScreen profileName={profileName} />}
       </HomeStack.Screen>
-
-      <HomeStack.Screen
-        name="History"
-        options={{
-          title: 'Baking History',
-          headerShown: true,
-          presentation: "modal",
-          animation: "slide_from_bottom",
-        }}
-        
-      >
-                {() => <HistoryScreen logEntries={logEntries} />}
-      </HomeStack.Screen>
-
-      <HomeStack.Screen
-        name="LogEntryDetail"
-        component={LogEntryDetailScreen}
-        options={{ title: 'Log Details', headerShown: true }}
-      />
     </HomeStack.Navigator>
   );
 }
 
-function MainTabs({ profileName, setProfileName, username, setUsername, experienceLevel, setExperienceLevel, friends, setFriends, logEntries, addLogEntry }) {
+function MainTabs({ profileName, setProfileName, username, setUsername, experienceLevel, setExperienceLevel, friends, setFriends }) {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -102,7 +92,6 @@ function MainTabs({ profileName, setProfileName, username, setUsername, experien
         {() => (
           <HomeStackScreen
             profileName={profileName}
-            logEntries={logEntries}
           />
         )}
 
@@ -117,8 +106,7 @@ function MainTabs({ profileName, setProfileName, username, setUsername, experien
         }}
       >
         {() => (
-          <SourdoughScreen
-            addLogEntry={addLogEntry}
+          <SourdoughStackScreen
             profileName={profileName}
           />
         )}
@@ -165,20 +153,11 @@ export default function App() {
   const [username, setUsername] = useState("");
   const [experienceLevel, setExperienceLevel] = useState(null);
   const [friends, setFriends] = useState([
-    { id: '1', username: 'AliceBaker', status: 'not_added' },
-    { id: '2', username: 'SourdoughSam', status: 'not_added' },
-    { id: '3', username: 'CrustyChris', status: 'not_added' },
-    { id: '4', username: 'DoughJoe', status: 'not_added' },
+    { id: '1', username: 'AliceBaker', status: 'not_added', level: 'Beginner' },
+    { id: '2', username: 'SourdoughSam', status: 'not_added', level: 'Intermediate' },
+    { id: '3', username: 'CrustyChris', status: 'not_added', level: 'Advanced' },
+    { id: '4', username: 'DoughJoe', status: 'not_added', level: 'Beginner' },
   ]);
-  const [logEntries, setLogEntries] = useState([{
-      personName: "Fodring",
-      amount: 100,
-      notes: "Surdejen ser meget aktiv ud i dag!",
-    }]);
-
-  const addLogEntry = (entry) => {
-    setLogEntries((prevEntries) => [entry, ...prevEntries]);
-  };
 
   return (
     <NavigationContainer>
@@ -202,8 +181,6 @@ export default function App() {
             setExperienceLevel={setExperienceLevel}
             friends={friends}
             setFriends={setFriends}
-            logEntries={logEntries}
-            addLogEntry={addLogEntry}
           />
         )}
       </OnboardingStack.Screen>
