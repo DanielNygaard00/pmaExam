@@ -97,8 +97,8 @@ export default function SourdoughScreen({ profileName }) {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.header}>
            <Text style={styles.title} accessibilityRole="header" numberOfLines={1}>My sourdoughs</Text>
-           <View style={styles.levelBadge} accessibilityLabel="Baker level: Beginner baker">
-              <Text style={styles.levelText}>Beginner baker</Text>
+           <View style={styles.levelBadge} accessibilityLabel={`Baker level: ${experienceLevel || 'Beginner'} baker`}>
+              <Text style={styles.levelText}>{experienceLevel || 'Beginner'} baker</Text>
            </View>
         </View>
 
@@ -197,7 +197,8 @@ export default function SourdoughScreen({ profileName }) {
               <Text style={styles.modalLabel}>Name of sourdough:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="What is the name of your sourdough?"
+                placeholderTextColor="#A0A0A0"
+                placeholder="What is the unique name of your starter?"
                 accessibilityLabel="Sourdough name"
                 value={newName}
                 onChangeText={setNewName}
@@ -206,7 +207,8 @@ export default function SourdoughScreen({ profileName }) {
               <Text style={styles.modalLabel}>Start date:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="What date did you start your sourdough?"
+                placeholderTextColor="#A0A0A0"
+                placeholder="When did you start this culture?"
                 accessibilityLabel="Start date"
                 value={newDate}
                 onChangeText={setNewDate}
@@ -215,7 +217,8 @@ export default function SourdoughScreen({ profileName }) {
               <Text style={styles.modalLabel}>Last feeded:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="When was the last day you feeded it?"
+                placeholderTextColor="#A0A0A0"
+                placeholder="When was the last time you gave it flour and water?"
                 accessibilityLabel="Last feeding date"
                 value={newFed}
                 onChangeText={setNewFed}
@@ -224,7 +227,8 @@ export default function SourdoughScreen({ profileName }) {
               <Text style={styles.modalLabel}>Location:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="Where in your house is it placed?"
+                placeholderTextColor="#A0A0A0"
+                placeholder="Where is it currently stored?"
                 accessibilityLabel="Location"
                 value={newLocation}
                 onChangeText={setNewLocation}
@@ -233,7 +237,8 @@ export default function SourdoughScreen({ profileName }) {
               <Text style={styles.modalLabel}>Flour:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="What types of flour are used?"
+                placeholderTextColor="#A0A0A0"
+                placeholder="Which flours do you primarily use?"
                 accessibilityLabel="Flour type"
                 value={newFlour}
                 onChangeText={setNewFlour}
@@ -429,6 +434,12 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginBottom: 4,
   },
+  modalHelpText: {
+    fontSize: 12,
+    color: '#6A6A6A',
+    fontStyle: 'italic',
+    marginBottom: 8,
+  },
   modalInput: {
     backgroundColor: '#F5F5F5',
     borderRadius: 12,
@@ -448,7 +459,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
     marginTop: 24,
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
   },
   saveButtonText: {
     color: '#FFFFFF',

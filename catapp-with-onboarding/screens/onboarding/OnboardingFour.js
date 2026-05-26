@@ -22,24 +22,19 @@ export default function OnboardingFour() {
         accessibilityLabel="Mastering recipes illustration"
       />
 
-      <Text 
-        style={styles.title}
-        accessibilityRole="header"
-      >
-        Master Your Recipes
-      </Text>
+   
       <Text style={styles.description}>
-        Follow expert recipes and log your baking progress to become a master baker.
+        Get inspired with sourdough recipes you can follow.
       </Text>
 
       <Pressable
         style={styles.button}
         onPress={() => navigation.replace('MainTabs')}
         accessibilityRole="button"
-        accessibilityLabel="Start using the app"
+        accessibilityLabel="Start using the Wake & Bake"
         accessibilityHint="Double tap to finish onboarding and start using the app"
       >
-        <Text style={styles.buttonText}>Start using the app</Text>
+        <Text style={styles.buttonText}>Start using Wake & Bake</Text>
       </Pressable>
     </View>
   );
@@ -64,8 +59,8 @@ const styles = StyleSheet.create({
     color: '#B77654',
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 450,
+    height: 450,
     marginBottom: 20,
     resizeMode: 'contain',
   },

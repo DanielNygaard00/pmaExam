@@ -15,7 +15,7 @@ import {
   Keyboard
 } from 'react-native';
 
-export default function HomeScreen({ profileName }) {
+export default function HomeScreen({ profileName, experienceLevel }) {
   const [bakes, setBakes] = useState([
     {
       id: '1',
@@ -71,7 +71,7 @@ export default function HomeScreen({ profileName }) {
       const newBake = {
         id: Date.now().toString(),
         user: profileName || 'USER NAME',
-        level: 'Beginner',
+        level: experienceLevel || 'Beginner',
         sourdoughName: newBakeName,
         flour: 'Default Flour Mix',
         image: require('../assets/bread.jpg'),
@@ -233,7 +233,8 @@ export default function HomeScreen({ profileName }) {
               <Text style={styles.modalLabel}>Sourdough name:</Text>
               <TextInput
                 style={styles.modalInput}
-                placeholder="What sourdough did you use to bake?"
+                placeholder="Which starter did you use for this bake?"
+                placeholderTextColor="#A0A0A0"
                 value={newBakeName}
                 onChangeText={setNewBakeName}
                 accessibilityLabel="Sourdough name input"
@@ -243,7 +244,7 @@ export default function HomeScreen({ profileName }) {
               <Text style={styles.modalLabel}>Say something about your baking:</Text>
               <TextInput
                 style={[styles.modalInput, styles.multilineInput]}
-                placeholder="What is on your mind?"
+                placeholder="Describe the taste, crust, or any changes you made"
                 value={newBakeNotes}
                 onChangeText={setNewBakeNotes}
                 multiline
@@ -401,6 +402,12 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     color: '#2C2C2C',
     marginTop: 16,
+    marginBottom: 4,
+  },
+  modalHelpText: {
+    fontSize: 12,
+    color: '#6A6A6A',
+    fontStyle: 'italic',
     marginBottom: 8,
   },
   uploadPlaceholder: {
@@ -437,7 +444,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 30,
     marginTop: 24,
-    alignSelf: 'center',
+    alignSelf: 'flex-end',
   },
   saveButtonText: {
     color: '#FFFFFF',

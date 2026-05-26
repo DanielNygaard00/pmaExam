@@ -22,14 +22,9 @@ export default function OnboardingTwo() {
         accessibilityLabel="Onboarding illustration 1"
       />
 
-      <Text 
-        style={styles.title}
-        accessibilityRole="header"
-      >
-        Your Professional Sourdough App
-      </Text>
+      
       <Text style={styles.description}>
-        Designed to help you master every step of the baking process.
+        Explore a dynamic home feed where you can discover other bakers’ creations and share your own.
       </Text>
 
       <Pressable
@@ -64,8 +59,8 @@ const styles = StyleSheet.create({
     color: '#B77654',
   },
  image: {
-    width: 300,
-    height: 300,
+    width: 450,
+    height: 450,
     marginBottom: 20,
     resizeMode: 'contain',
   },

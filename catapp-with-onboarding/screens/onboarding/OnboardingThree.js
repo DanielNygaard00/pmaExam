@@ -22,16 +22,10 @@ export default function OnboardingThree() {
         accessibilityLabel="Sourdough tracking illustration"
       />
 
-      <Text 
-        style={styles.title}
-        accessibilityRole="header"
-      >
-        Track Your Sourdough
-      </Text>
+      
       <Text style={styles.description}>
-        Keep track of your starter's age, feeding schedule, and flour types to ensure it's always healthy.
+        Add and track your starters, and stay on top of your baking with a to-do system    
       </Text>
-
       <Pressable
         style={styles.button}
         onPress={() => navigation.navigate('OnboardingFour')}
@@ -64,8 +58,8 @@ const styles = StyleSheet.create({
     color: '#B77654',
   },
  image: {
-    width: 300,
-    height: 300,
+    width: 450,
+    height: 450,
     marginBottom: 20,
     resizeMode: 'contain',
   },

@@ -33,25 +33,25 @@ function RecipesStackScreen() {
   );
 }
 
-function SourdoughStackScreen({ profileName }) {
+function SourdoughStackScreen({ profileName, experienceLevel }) {
   return (
     <SourdoughStack.Navigator screenOptions={{ headerShown: false }}>
       <SourdoughStack.Screen name="SourdoughMain">
-        {() => <SourdoughScreen profileName={profileName} />}
+        {() => <SourdoughScreen profileName={profileName} experienceLevel={experienceLevel} />}
       </SourdoughStack.Screen>
       <SourdoughStack.Screen name="Todo" component={TodoScreen} />
     </SourdoughStack.Navigator>
   );
 }
 
-function HomeStackScreen({ profileName }) {
+function HomeStackScreen({ profileName, experienceLevel }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="HomeMain"
         options={{ title: 'Home', headerShown: false }}
       >
-        {() => <HomeScreen profileName={profileName} />}
+        {() => <HomeScreen profileName={profileName} experienceLevel={experienceLevel} />}
       </HomeStack.Screen>
     </HomeStack.Navigator>
   );
@@ -92,6 +92,7 @@ function MainTabs({ profileName, setProfileName, username, setUsername, experien
         {() => (
           <HomeStackScreen
             profileName={profileName}
+            experienceLevel={experienceLevel}
           />
         )}
 
@@ -108,6 +109,7 @@ function MainTabs({ profileName, setProfileName, username, setUsername, experien
         {() => (
           <SourdoughStackScreen
             profileName={profileName}
+            experienceLevel={experienceLevel}
           />
         )}
       </Tab.Screen>
